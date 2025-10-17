@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Gerenciador_Pessoal.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Gerenciador_Pessoal"
+    xmlns:pages="clr-namespace:Gerenciador_Pessoal.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Gerenciador_Pessoal">
+    
+    <TabBar>
+        
+    <ShellContent
+        Title="Transação"
+        Icon="transaction.svg"
+        ContentTemplate="{DataTemplate pages:NovaTransacao}"
+        Route="NovaTransacao" />  
+        
+    <ShellContent
+        Title="Início"
+        Icon="home.svg"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Histórico"
+        Icon="clipboard.png"
+        ContentTemplate="{DataTemplate pages:Historico}"
+        Route="Historico" />
+        
+    </TabBar>
+
+</Shell>

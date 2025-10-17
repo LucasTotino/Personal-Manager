@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:behaviors="clr-namespace:Gerenciador_Pessoal.Behaviors"
+             x:Class="Gerenciador_Pessoal.Pages.NovaTransacao"
+             Title="">
+   
+    <VerticalStackLayout
+        Padding="15">
+        
+        <Label Text="Nova Transação"
+               HorizontalOptions="Center"
+               Padding="0, 20, 0, 20"
+               FontAttributes="Bold"
+               FontSize="20"/>
+
+        <Label Text="Descrição" />
+        <Entry x:Name="txtDescricao" Placeholder="Ex: Mercado, Salário..." />
+
+        <Label Text="Valor" />
+        <Entry x:Name="txtValor" Placeholder="R$ 0,00" Keyboard="Numeric" CursorPosition="3">
+            <Entry.Behaviors>
+                <behaviors:MascaraValores/>
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Text="Data" />
+        <DatePicker x:Name="dtpData"
+            Format="dd/MM/yyyy"
+            Date="{x:Static sys:DateTime.Now}"/>
+
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Receita?" VerticalOptions="Center" />
+            <Switch x:Name="swReceita" />
+        </HorizontalStackLayout>
+
+        <Button Text="Salvar" 
+                    Clicked="BtnSalvar_Clicked"
+                    BackgroundColor="Green" 
+                    TextColor="White"/>
+    </VerticalStackLayout>
+</ContentPage>

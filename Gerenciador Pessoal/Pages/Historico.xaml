@@ -1,0 +1,76 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gerenciador_Pessoal.Pages.Historico"
+             Title="">
+
+    <Grid RowDefinitions="Auto,*" Padding="15">
+
+        <!-- Cabeçalho -->
+        <Label Text="Histórico:"
+               Grid.Row="0"
+               HorizontalOptions="Center"
+               FontSize="20"
+               FontAttributes="Bold"
+               Padding="0,20,0,20"/>
+
+        <!-- Lista que expande e rola -->
+        <CollectionView x:Name="lstHistorico"
+                        Grid.Row="1"
+                        VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <!-- Ações do Swipe -->
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Editar"
+                                           BackgroundColor="LightBlue"
+                                           Invoked="OnEditarClicked"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Excluir"
+                                           BackgroundColor="LightCoral"
+                                           IconImageSource="delete.png"
+                                           Invoked="OnExcluirClicked"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <!-- Conteúdo do item -->
+                        <Grid Padding="5"
+                              RowDefinitions="Auto,*"
+                              ColumnDefinitions="80,*,100"
+                              ColumnSpacing="10">
+
+                            <Label Text="{Binding Data, StringFormat='{0:dd/MM}'}"
+                                   FontSize="14"
+                                   Grid.Column="0"
+                                   VerticalOptions="Center"/>
+
+                            <Label Text="{Binding Descricao}" 
+                                   FontSize="16" 
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Margin="10,0"/>
+
+                            <Label Text="{Binding Valor, StringFormat='R$ {0:N2}'}" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="{Binding IsReceita, Converter={StaticResource ReceitaFundo}}"
+                                   Grid.Column="2"
+                                   VerticalOptions="Center"/>
+
+                            <BoxView Grid.Row="1" Grid.ColumnSpan="3"
+                                     HeightRequest="1"
+                                     Color="LightGray"
+                                     VerticalOptions="End"/>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
